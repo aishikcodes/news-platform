@@ -437,7 +437,21 @@ We welcome contributions! Here's how to contribute:
 
 This project is licensed under the **MIT License** — see [LICENSE](LICENSE) file for complete details.
 
-Free to use for personal and commercial projects. Attribution appreciated but not required!
+### What This Means:
+
+✅ **You CAN:**
+- Use this code for personal or commercial projects
+- Study and learn from the source code
+- Modify and improve the code
+- Share it with others
+
+❌ **You MUST:**
+- Give credit to Aishik Codes (@aishikcodes)
+- Share your improvements back under GPL v3
+- Include a copy of this license
+- Make source code available to users
+
+**In short:** Anyone using this code must also keep it open source and credit you!
 
 ---
 

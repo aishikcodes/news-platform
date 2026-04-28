@@ -1,21 +1,43 @@
-MIT License
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
 
 Copyright (c) 2026 Aishik Codes
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+---
+
+KEY TERMS - GPL v3 REQUIRES:
+
+✅ ATTRIBUTION - You MUST mention Aishik Codes as the original author
+✅ SHARE CODE - If you distribute modified versions, source code must be shared
+✅ SAME LICENSE - Any derivative work must use GPL v3 (can't be closed source)
+✅ INCLUDE LICENSE - Copy of this license must be distributed with the software
+✅ DOCUMENT CHANGES - Clear notice of all modifications you made
+
+FREEDOMS GRANTED:
+
+• Freedom to use for any purpose
+• Freedom to study the source code
+• Freedom to modify and improve
+• Freedom to share with others (with the same freedoms)
+
+RESTRICTIONS:
+
+✗ You CANNOT make it proprietary
+✗ You CANNOT hide the source code
+✗ You CANNOT remove author attribution
+✗ You CANNOT use it without sharing improvements under GPL v3
+
+Full license: https://www.gnu.org/licenses/gpl-3.0.html
