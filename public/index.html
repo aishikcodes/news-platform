@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsPop - Your Daily News Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-rss-square"></i>
+                <span>NewsPop</span>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="#" class="nav-link active" onclick="switchCategory('general', this); return false;"><i class="fas fa-home"></i> Home</a>
+                <a href="#" class="nav-link" onclick="switchCategory('business', this); return false;"><i class="fas fa-briefcase"></i> Business</a>
+                <a href="#" class="nav-link" onclick="switchCategory('technology', this); return false;"><i class="fas fa-microchip"></i> Tech</a>
+                <a href="#" class="nav-link" onclick="switchCategory('sports', this); return false;"><i class="fas fa-football"></i> Sports</a>
+                <a href="#" class="nav-link" onclick="openQuiz(); return false;"><i class="fas fa-brain"></i> Quiz</a>
+                <a href="#" class="nav-link" onclick="showBookmarks(); return false;"><i class="fas fa-bookmark"></i> Saved</a>
+            </div>
+
+            <div class="nav-actions">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search breaking news..." class="search-input" autocomplete="off">
+                    <button onclick="searchNews()" class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                </div>
+                <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                <div class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMenu()"></div>
+
+    <!-- Weather Widget -->
+    <div class="weather-card">
+        <div class="weather-content" id="weatherContent">
+            <div class="weather-icon-container">
+                <i id="weatherIcon" class="fas fa-cloud-sun"></i>
+            </div>
+            <div class="weather-info">
+                <h3 id="weatherCity">Jakarta</h3>
+                <p id="weatherTemp">28°C</p>
+                <small id="weatherDesc">Partly Cloudy</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-badge"><i class="fas fa-bolt"></i> Live Updates</div>
+        <h1>Stay Updated with Breaking News</h1>
+        <p>Discover trending stories, insights & world events in real-time from trusted sources across the globe.</p>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="category-filter" id="categoryFilter">
+        <button class="category-btn active" data-cat="general" onclick="switchCategory('general', this)"><i class="fas fa-globe"></i> All News</button>
+        <button class="category-btn" data-cat="business" onclick="switchCategory('business', this)"><i class="fas fa-chart-line"></i> Business</button>
+        <button class="category-btn" data-cat="sports" onclick="switchCategory('sports', this)"><i class="fas fa-trophy"></i> Sports</button>
+        <button class="category-btn" data-cat="health" onclick="switchCategory('health', this)"><i class="fas fa-heartbeat"></i> Health</button>
+        <button class="category-btn" data-cat="entertainment" onclick="switchCategory('entertainment', this)"><i class="fas fa-film"></i> Entertainment</button>
+        <button class="category-btn" data-cat="technology" onclick="switchCategory('technology', this)"><i class="fas fa-rocket"></i> Technology</button>
+    </div>
+
+    <!-- Section Title -->
+    <div class="section-header" id="sectionHeader">
+        <h2 id="sectionTitle">Latest News</h2>
+        <span class="section-count" id="sectionCount"></span>
+    </div>
+
+    <!-- Skeleton Loader -->
+    <div id="skeletonLoader" class="skeleton-grid hidden">
+        <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-text short"></div><div class="skeleton-text"></div><div class="skeleton-text long"></div></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-text short"></div><div class="skeleton-text"></div><div class="skeleton-text long"></div></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-text short"></div><div class="skeleton-text"></div><div class="skeleton-text long"></div></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-text short"></div><div class="skeleton-text"></div><div class="skeleton-text long"></div></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-text short"></div><div class="skeleton-text"></div><div class="skeleton-text long"></div></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-text short"></div><div class="skeleton-text"></div><div class="skeleton-text long"></div></div></div>
+    </div>
+
+    <!-- Loading Animation -->
+    <div id="loadingSpinner" class="loading-spinner hidden">
+        <div class="spinner"></div>
+        <p>Loading latest news...</p>
+    </div>
+
+    <!-- News Grid -->
+    <div class="news-container">
+        <div class="news-grid" id="newsGrid">
+            <!-- News cards will be generated here -->
+        </div>
+    </div>
+
+    <!-- Quiz Modal -->
+    <div id="quizModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-bullseye"></i> News Quiz Challenge</h2>
+                <button class="close-btn" onclick="closeQuiz()" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="quizContainer"></div>
+            <button id="submitQuizBtn" onclick="submitQuiz()" class="btn btn-primary">Submit Quiz</button>
+            <button id="retryQuizBtn" onclick="openQuiz()" class="btn btn-secondary hidden">Try Again</button>
+            <div id="quizResult"></div>
+        </div>
+    </div>
+
+    <!-- Bookmarks Modal -->
+    <div id="bookmarksModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-bookmark"></i> Saved Articles</h2>
+                <button class="close-btn" onclick="closeBookmarks()" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="bookmarksContainer">
+                <p class="empty-state">No saved articles yet. Click the bookmark icon on any article to save it here.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top hidden" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <i class="fas fa-rss-square"></i>
+                <span>NewsPop</span>
+            </div>
+            <p>Your daily news hub. Curated, fast, and reliable.</p>
+            <div class="footer-links">
+                <a href="#" onclick="switchCategory('general', null); return false;">Home</a>
+                <a href="#" onclick="openQuiz(); return false;">Quiz</a>
+                <a href="#" onclick="showBookmarks(); return false;">Saved</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p> NewsPop. Powered by NewsAPI & OpenWeather.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
